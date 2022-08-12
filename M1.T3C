@@ -1,0 +1,29 @@
+//Ricky Boeing Task M1.T2P
+
+
+const uint8_t sensor_PIN = 2;
+const uint8_t led_PIN = 3;
+
+
+volatile int sensor_STATE = 0;
+
+void setup()
+{
+  pinMode(sensor_PIN, INPUT);
+  pinMode(led_PIN, OUTPUT);
+  Serial.begin(9600);
+  attachInterrupt(0, pin_ISR, CHANGE);
+}
+
+void loop()
+{
+
+}
+
+void pin_ISR()
+{
+  sensor_STATE = digitalRead(sensor_PIN);
+  digitalWrite(led_PIN, sensor_STATE);
+  Serial.println(sensor_STATE);
+}
+
